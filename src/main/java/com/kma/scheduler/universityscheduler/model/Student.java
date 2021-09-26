@@ -4,11 +4,8 @@ import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Student {
-    @Getter @Setter
-    private String name;
-    @Getter @Setter
-    private String surname;
+public class Student extends Human {
+
     @Getter @Setter
     private int course;
     @Getter @Setter
@@ -16,11 +13,13 @@ public class Student {
     @Getter
     private ScheduleService scheduleService;
 
+
     public Student(ScheduleService scheduleService, String surname, String name, int course, String accessRole){
+        super(name, surname);
         this.course = course;
-        this.name = name;
-        this.surname = surname;
         this.scheduleService = scheduleService;
         this.accessRole = accessRole;
     }
+
+    public Slot[] readSchedule(){return scheduleService.getSchedule(id);}
 }
