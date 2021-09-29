@@ -5,13 +5,13 @@ import lombok.Setter;
 
 public class Slot {
     @Getter
-    private String time;
+    private final String time;
     @Getter @Setter
-    private Teacher teacher;
+    private Lector teacher;
     @Getter @Setter
     private String room;
 
-    public Slot(String time, Teacher teacher, String room){
+    public Slot(String time, Lector teacher, String room){
         this.time = time;
         this.teacher = teacher;
         this.room = room;

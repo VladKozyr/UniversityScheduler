@@ -1,25 +1,34 @@
 package com.kma.scheduler.universityscheduler.model;
 
-import com.kma.scheduler.universityscheduler.service.role.RoleService;
+import com.kma.scheduler.universityscheduler.service.lector.LectorService;
+import com.kma.scheduler.universityscheduler.service.manager.ManagerService;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
-import lombok.Getter;
-import lombok.Setter;
+import com.kma.scheduler.universityscheduler.service.student.StudentService;
 
-public class Admin extends Human{
-    @Getter @Setter
-    private String accessRole;
-    @Getter
-    private ScheduleService scheduleService;
-    @Getter
-    private RoleService roleService;
+public class Admin extends User{
 
-    public Admin(ScheduleService scheduleService,RoleService roleService, String surname, String name, String department, String accessRole){
+    private final ScheduleService scheduleService;
+    private final StudentService studentService;
+    private final LectorService lectorService;
+    private final ManagerService managerService;
+
+    public Admin(ScheduleService scheduleService, StudentService studentService, LectorService lectorService, ManagerService managerService,  String surname, String name){
         super(name, surname);
         this.scheduleService = scheduleService;
-        this.accessRole = accessRole;
-        this.roleService = roleService;
+        this.studentService = studentService;
+        this.lectorService = lectorService;
+        this.managerService = managerService;
     }
 
-    public void setRole(int userId, RoleService.Role role){roleService.setRole(userId, role);}
-    public void removeRole(int userId){roleService.removeRole(userId);}
+    public Student createStudent(String name,String surname, Course course){
+        return this.studentService.createStudent(name,surname,course);
+    }
+
+    public Lector createLector(String name,String surname){
+        return this.lectorService.createLector(name,surname);
+    }
+
+    public Manager createManager(String name,String surname){
+        return this.managerService.createManager(name,surname);
+    }
 }

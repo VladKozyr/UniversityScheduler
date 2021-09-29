@@ -4,16 +4,15 @@ import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Manager extends User{
+public class Lector extends User{
+
     private final ScheduleService scheduleService;
 
-    public Manager(ScheduleService scheduleService, String surname, String name){
+    public Lector(ScheduleService scheduleService,  String name, String surname){
         super(name, surname);
         this.scheduleService = scheduleService;
     }
 
-    public void updateSchedule(Slot[] slots){
-        for(Slot slot : slots)
-            scheduleService.updateSlot(slot);
-    }
+    public Slot[] getSchedule(){return scheduleService.getLectorSchedule(this);}
+
 }
