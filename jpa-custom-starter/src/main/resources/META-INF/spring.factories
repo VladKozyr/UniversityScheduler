@@ -1,0 +1,3 @@
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.kma.scheduler.jpacustomstarter.CustomJpaAutoConfiguration
