@@ -1,8 +1,10 @@
 package com.kma.scheduler.universityscheduler.service.admin;
 
-import com.kma.scheduler.universityscheduler.Entity.UserEntity;
+import com.kma.scheduler.universityscheduler.Entity.LectorEntity;
+import com.kma.scheduler.universityscheduler.Entity.StudentEntity;
 import com.kma.scheduler.universityscheduler.model.Admin;
-import com.kma.scheduler.universityscheduler.repository.UserRepository;
+import com.kma.scheduler.universityscheduler.repository.LectorRepository;
+import com.kma.scheduler.universityscheduler.repository.StudentRepository;
 import com.kma.scheduler.universityscheduler.service.lector.LectorService;
 import com.kma.scheduler.universityscheduler.service.manager.ManagerService;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
@@ -19,11 +21,10 @@ public class AdminService {
     private final ManagerService managerService;
 
     @Autowired
-    UserRepository userRepository;
+    StudentRepository studentRepository;
+    @Autowired
+    LectorRepository lectorRepository;
 
-    public void save(UserEntity userEntity){
-        userRepository.save(userEntity);
-    }
     public AdminService(ScheduleService scheduleService, StudentService studentService, LectorService lectorService, ManagerService managerService) {
         this.scheduleService = scheduleService;
         this.studentService = studentService;
@@ -34,4 +35,13 @@ public class AdminService {
     public Admin createAdmin(String name, String surname){
         return new Admin(scheduleService,studentService,lectorService,managerService,name,surname);
     }
+
+    public void addStudent(StudentEntity studentEntity){
+        studentRepository.save(studentEntity);
+    }
+
+    public void addLector(LectorEntity lectorEntity){
+        lectorRepository.save(lectorEntity);
+    }
+
 }

@@ -1,22 +1,21 @@
 package com.kma.scheduler.universityscheduler.Entity;
 
+import lombok.AllArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "lectors")
+@AllArgsConstructor
+@ToString
+public class LectorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String surname;
     private String name;
-    private String role;
+    private String cathedra;
 
-    public UserEntity(String name, String surname, String role){
-        this.surname = surname;
-        this.name = name;
-        this.role = role;
-    }
 }
