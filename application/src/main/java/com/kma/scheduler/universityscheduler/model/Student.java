@@ -1,6 +1,9 @@
 package com.kma.scheduler.universityscheduler.model;
 
+import com.kma.scheduler.universityscheduler.entity.Course;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
+
+import java.util.UUID;
 
 public class Student extends User {
 
@@ -8,8 +11,8 @@ public class Student extends User {
 
     private final ScheduleService scheduleService;
 
-    public Student(ScheduleService scheduleService, String surname, String name, Course course){
-        super(name, surname);
+    public Student(UUID id,ScheduleService scheduleService, String surname, String name, Course course){
+        super(id,name, surname);
         this.course = course;
         this.scheduleService = scheduleService;
     }

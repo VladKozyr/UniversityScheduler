@@ -1,7 +1,7 @@
 package com.kma.scheduler.universityscheduler.service.admin;
 
-import com.kma.scheduler.universityscheduler.Entity.LectorEntity;
-import com.kma.scheduler.universityscheduler.Entity.StudentEntity;
+import com.kma.scheduler.universityscheduler.entity.LectorEntity;
+import com.kma.scheduler.universityscheduler.entity.StudentEntity;
 import com.kma.scheduler.universityscheduler.model.Admin;
 import com.kma.scheduler.universityscheduler.repository.LectorRepository;
 import com.kma.scheduler.universityscheduler.repository.StudentRepository;
@@ -20,20 +20,21 @@ public class AdminService {
     private final LectorService lectorService;
     private final ManagerService managerService;
 
-    @Autowired
-    StudentRepository studentRepository;
-    @Autowired
-    LectorRepository lectorRepository;
+    private final StudentRepository studentRepository;
+    private final LectorRepository lectorRepository;
 
-    public AdminService(ScheduleService scheduleService, StudentService studentService, LectorService lectorService, ManagerService managerService) {
+    public AdminService(ScheduleService scheduleService, StudentService studentService, LectorService lectorService, ManagerService managerService, StudentRepository studentRepository, LectorRepository lectorRepository) {
         this.scheduleService = scheduleService;
         this.studentService = studentService;
         this.lectorService = lectorService;
         this.managerService = managerService;
+        this.studentRepository = studentRepository;
+        this.lectorRepository = lectorRepository;
     }
 
+
     public Admin createAdmin(String name, String surname){
-        return new Admin(scheduleService,studentService,lectorService,managerService,name,surname);
+        return new Admin(null,scheduleService,studentService,lectorService,managerService,name,surname);
     }
 
     public void addStudent(StudentEntity studentEntity){

@@ -1,7 +1,7 @@
 package com.kma.scheduler.universityscheduler.controller;
 
-import com.kma.scheduler.universityscheduler.Entity.LectorEntity;
-import com.kma.scheduler.universityscheduler.Entity.StudentEntity;
+import com.kma.scheduler.universityscheduler.entity.LectorEntity;
+import com.kma.scheduler.universityscheduler.entity.StudentEntity;
 import com.kma.scheduler.universityscheduler.service.admin.AdminList;
 import com.kma.scheduler.universityscheduler.service.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,6 @@ public class MainController {
     MainController(String demo, AdminList adminList){
         System.out.println(demo);
         System.out.println(adminList.getAdmin());
-    }
-    @GetMapping("/main")
-    public String helloWorld() {
-        return "Hello world!!!";
     }
 
     @PostMapping("/addStudent")
