@@ -1,0 +1,6 @@
+[INFO ] 2021-10-20 17:38:06.977 [main] LoggerConfiguration - Aplication started
+[INFO ] 2021-10-20 17:39:29.032 [main] LoggerConfiguration - Aplication started
+[ERROR] 2021-10-20 17:40:35.440 [main] LoggerConfiguration - Error
+[ERROR] 2021-10-20 17:59:28.263 [main] ErrorLogger - Error
+[ERROR] 2021-10-20 18:10:00.852 [main] ErrorLogger - Error
+ run

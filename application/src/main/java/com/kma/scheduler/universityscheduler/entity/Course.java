@@ -1,6 +1,8 @@
 package com.kma.scheduler.universityscheduler.entity;
 
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.persistence.*;
 import java.util.UUID;
