@@ -12,6 +12,8 @@ import com.kma.scheduler.universityscheduler.service.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class AdminService {
 
@@ -33,16 +35,23 @@ public class AdminService {
     }
 
 
-    public Admin createAdmin(String name, String surname){
-        return new Admin(null,scheduleService,studentService,lectorService,managerService,name,surname);
+    public Admin createAdmin(String name, String surname) {
+        return new Admin(null, scheduleService, studentService, lectorService, managerService, name, surname);
     }
 
-    public void addStudent(StudentEntity studentEntity){
+    public void addStudent(StudentEntity studentEntity) {
         studentRepository.save(studentEntity);
     }
 
-    public void addLector(LectorEntity lectorEntity){
+    public void deleteStudent(UUID studentUUID) {
+        studentRepository.deleteById(studentUUID);
+    }
+
+    public void addLector(LectorEntity lectorEntity) {
         lectorRepository.save(lectorEntity);
     }
 
+    public void deleteLector(UUID lectorUUID) {
+        lectorRepository.deleteById(lectorUUID);
+    }
 }

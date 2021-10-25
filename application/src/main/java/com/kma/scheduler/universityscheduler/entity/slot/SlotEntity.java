@@ -30,6 +30,4 @@ public class SlotEntity {
     @OneToOne
     private final LectorEntity lector;
     private final String room;
-
-
 }
