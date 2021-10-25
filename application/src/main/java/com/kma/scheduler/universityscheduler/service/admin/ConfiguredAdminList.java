@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @ConditionalOnProperty(
         value="user.admin.isDefault",
         havingValue = "true",
-        matchIfMissing = true)
+        matchIfMissing = false)
 public class ConfiguredAdminList implements AdminList {
     @Value("${user.admin.name}")
     public String adminName;
