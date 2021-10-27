@@ -1,3 +1,2 @@
 rootProject.name = 'UniversityScheduler'
-include 'application'
-include 'jpa-custom-starter'
+include 'application', 'jpa-custom-starter'

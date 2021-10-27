@@ -26,35 +26,4 @@ public class MainController {
         return "Main controller";
     }
 
-    @PostMapping("/student/add")
-    public String addStudent(@RequestBody StudentEntity studentEntity) {
-        adminService.addStudent(studentEntity);
-        return "Added";
-    }
-
-    @DeleteMapping("/student/delete")
-    public String deleteStudent(@RequestParam UUID studentUUID) {
-        adminService.deleteStudent(studentUUID);
-        return "Deleted";
-    }
-
-    @PostMapping("/lector/add")
-    public String addLector(@RequestBody LectorEntity lectorEntity) {
-        adminService.addLector(lectorEntity);
-        return "Added";
-    }
-
-    @DeleteMapping("/lector/delete")
-    public String addLector(@RequestParam UUID lectorUUID) {
-        adminService.deleteLector(lectorUUID);
-        return "Deleted";
-    }
-
-
-    @PutMapping("timeslot/update")
-    public String updateTimeslot(@RequestParam UUID slotUUID, UUID lectorUUID, UUID courseUUID) {
-        scheduleService.updateSlot(slotUUID, lectorUUID, courseUUID);
-        return "Updated";
-    }
-
 }
