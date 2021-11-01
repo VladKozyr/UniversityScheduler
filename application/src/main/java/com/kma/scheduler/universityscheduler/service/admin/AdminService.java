@@ -36,8 +36,8 @@ public class AdminService {
         return new Admin(null, scheduleService, studentService, lectorService, managerService, name, surname);
     }
 
-    public void addStudent(StudentEntity studentEntity) {
-        studentRepository.save(studentEntity);
+    public StudentEntity addStudent(StudentEntity studentEntity) {
+        return studentRepository.save(studentEntity);
     }
 
     public void deleteStudent(Long studentId) {

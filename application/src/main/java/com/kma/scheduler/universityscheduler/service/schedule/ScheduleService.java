@@ -1,9 +1,12 @@
 package com.kma.scheduler.universityscheduler.service.schedule;
 
 import com.kma.scheduler.universityscheduler.entity.Course;
+import com.kma.scheduler.universityscheduler.entity.LectorEntity;
 import com.kma.scheduler.universityscheduler.entity.slot.SlotEntity;
 import com.kma.scheduler.universityscheduler.model.Lector;
 import com.kma.scheduler.universityscheduler.model.Slot;
+import com.kma.scheduler.universityscheduler.repository.CourseRepository;
+import com.kma.scheduler.universityscheduler.repository.LectorRepository;
 import com.kma.scheduler.universityscheduler.repository.SlotRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +15,14 @@ import java.util.Optional;
 @Service
 public class ScheduleService {
 
-    private final SlotRepository repository;
+    private final SlotRepository slotRepository;
+    private final LectorRepository lectorRepository;
+    private final CourseRepository courseRepository;
 
-    public ScheduleService(SlotRepository repository) {
-        this.repository = repository;
+    public ScheduleService(SlotRepository slotRepository, LectorRepository lectorRepository, CourseRepository courseRepository) {
+        this.slotRepository = slotRepository;
+        this.lectorRepository = lectorRepository;
+        this.courseRepository = courseRepository;
     }
 
     public Slot[] getCourseSchedule(Course course) {
@@ -31,10 +38,25 @@ public class ScheduleService {
     }
 
     public void updateSlot(Long slotId, Long lectorId, Long courseId) {
-        Optional<SlotEntity> slotEntityOptional = repository.findById(slotId);
+
+        if (slotId == null) return;
+
+        Optional<SlotEntity> slotEntityOptional = slotRepository.findById(slotId);
+
         if (slotEntityOptional.isPresent()) {
             SlotEntity slot = slotEntityOptional.get();
-            //TODO update with mapping
+
+            if (lectorId != null) {
+                Optional<LectorEntity> lectorEntityOptional = lectorRepository.findById(lectorId);
+                lectorEntityOptional.ifPresent(slot::setLector);
+            }
+
+            if (courseId != null) {
+                Optional<Course> courseOptional = courseRepository.findById(courseId);
+                courseOptional.ifPresent(slot::setCourse);
+            }
+
+            slotRepository.save(slot);
         }
     }
 }

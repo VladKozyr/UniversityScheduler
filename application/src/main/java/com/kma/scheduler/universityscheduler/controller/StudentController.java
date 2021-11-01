@@ -26,10 +26,9 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public String addStudent(@RequestBody StudentEntity studentEntity) {
+    public StudentEntity addStudent(@RequestBody StudentEntity studentEntity) {
         System.out.println(studentEntity);
-        adminService.addStudent(studentEntity);
-        return "Added";
+        return adminService.addStudent(studentEntity);
     }
 
     @DeleteMapping("/delete")

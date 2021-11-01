@@ -16,7 +16,7 @@ public class SlotController {
     }
 
 
-    @PutMapping("update")
+    @PutMapping("/update")
     public String updateTimeslot(@RequestParam Long slotId, Long lectorId, Long courseId) {
         scheduleService.updateSlot(slotId, lectorId, courseId);
         return "Updated";
