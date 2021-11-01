@@ -9,10 +9,7 @@ import com.kma.scheduler.universityscheduler.service.lector.LectorService;
 import com.kma.scheduler.universityscheduler.service.manager.ManagerService;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
 import com.kma.scheduler.universityscheduler.service.student.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class AdminService {
@@ -43,15 +40,15 @@ public class AdminService {
         studentRepository.save(studentEntity);
     }
 
-    public void deleteStudent(UUID studentUUID) {
-        studentRepository.deleteById(studentUUID);
+    public void deleteStudent(Long studentId) {
+        studentRepository.deleteById(studentId);
     }
 
     public void addLector(LectorEntity lectorEntity) {
         lectorRepository.save(lectorEntity);
     }
 
-    public void deleteLector(UUID lectorUUID) {
-        lectorRepository.deleteById(lectorUUID);
+    public void deleteLector(Long lectorId) {
+        lectorRepository.deleteById(lectorId);
     }
 }

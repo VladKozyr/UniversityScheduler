@@ -5,7 +5,6 @@ import com.kma.scheduler.universityscheduler.entity.Course;
 import lombok.AllArgsConstructor;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table(name = "slot",uniqueConstraints = { @UniqueConstraint(columnNames =
@@ -14,7 +13,7 @@ import java.util.UUID;
 public class SlotEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private final UUID id;
+    private final Long id;
     @ManyToOne
     @JoinColumn(name = "course_id")
     private final Course course;

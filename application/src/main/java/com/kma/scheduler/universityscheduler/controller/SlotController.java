@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("timeslot")
 public class SlotController {
@@ -19,8 +17,8 @@ public class SlotController {
 
 
     @PutMapping("update")
-    public String updateTimeslot(@RequestParam UUID slotUUID, UUID lectorUUID, UUID courseUUID) {
-        scheduleService.updateSlot(slotUUID, lectorUUID, courseUUID);
+    public String updateTimeslot(@RequestParam Long slotId, Long lectorId, Long courseId) {
+        scheduleService.updateSlot(slotId, lectorId, courseId);
         return "Updated";
     }
 }

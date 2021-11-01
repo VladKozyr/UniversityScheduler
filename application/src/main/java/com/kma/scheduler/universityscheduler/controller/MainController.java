@@ -1,13 +1,9 @@
 package com.kma.scheduler.universityscheduler.controller;
 
-import com.kma.scheduler.universityscheduler.entity.LectorEntity;
-import com.kma.scheduler.universityscheduler.entity.StudentEntity;
 import com.kma.scheduler.universityscheduler.service.admin.AdminList;
 import com.kma.scheduler.universityscheduler.service.admin.AdminService;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 public class MainController {
@@ -20,6 +16,8 @@ public class MainController {
         System.out.println(demo);
         System.out.println(adminList.getAdmin());
     }
+
+//    @ExceptionHandler({})
 
     @GetMapping("/main")
     public String main() {

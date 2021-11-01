@@ -8,7 +8,6 @@ import com.kma.scheduler.universityscheduler.repository.SlotRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class ScheduleService {
@@ -31,8 +30,8 @@ public class ScheduleService {
         return slot;
     }
 
-    public void updateSlot(UUID slotUUID, UUID lectorUUID, UUID courseUUID) {
-        Optional<SlotEntity> slotEntityOptional = repository.findById(slotUUID);
+    public void updateSlot(Long slotId, Long lectorId, Long courseId) {
+        Optional<SlotEntity> slotEntityOptional = repository.findById(slotId);
         if (slotEntityOptional.isPresent()) {
             SlotEntity slot = slotEntityOptional.get();
             //TODO update with mapping

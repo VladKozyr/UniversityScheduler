@@ -2,28 +2,36 @@ package com.kma.scheduler.universityscheduler.controller;
 
 import com.kma.scheduler.universityscheduler.entity.LectorEntity;
 import com.kma.scheduler.universityscheduler.service.admin.AdminService;
+import com.kma.scheduler.universityscheduler.service.lector.LectorService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("lector")
 public class LectorController {
     private final AdminService adminService;
+    private final LectorService lectorService;
 
-    public LectorController(AdminService adminService) {
+    public LectorController(AdminService adminService, LectorService lectorService) {
         this.adminService = adminService;
+        this.lectorService = lectorService;
     }
 
-    @PostMapping("/lector/add")
-    public String addLector(@RequestBody LectorEntity lectorEntity) {
+    @GetMapping("/all")
+    public List<LectorEntity> getLectors() {
+        return lectorService.getAllLectors();
+    }
+
+    @PostMapping("/add")
+    public String deleteLector(@RequestBody LectorEntity lectorEntity) {
         adminService.addLector(lectorEntity);
         return "Added";
     }
 
-    @DeleteMapping("/lector/delete")
-    public String addLector(@RequestParam UUID lectorUUID) {
-        adminService.deleteLector(lectorUUID);
+    @DeleteMapping("/delete")
+    public String deleteLector(@RequestParam Long lectorId) {
+        adminService.deleteLector(lectorId);
         return "Deleted";
     }
 }
