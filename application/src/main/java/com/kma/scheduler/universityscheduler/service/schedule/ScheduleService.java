@@ -43,15 +43,13 @@ public class ScheduleService {
         if (slotEntityOptional.isPresent()) {
             SlotEntity slot = slotEntityOptional.get();
 
-            if (lectorId != null) {
+
                 Optional<LectorEntity> lectorEntityOptional = lectorRepository.findById(lectorId);
                 lectorEntityOptional.ifPresent(slot::setLector);
-            }
 
-            if (courseId != null) {
+
                 Optional<Course> courseOptional = courseRepository.findById(courseId);
                 courseOptional.ifPresent(slot::setCourse);
-            }
 
             slotRepository.save(slot);
         }

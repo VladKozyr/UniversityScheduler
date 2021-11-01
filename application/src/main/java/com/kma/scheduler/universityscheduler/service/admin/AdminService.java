@@ -2,6 +2,7 @@ package com.kma.scheduler.universityscheduler.service.admin;
 
 import com.kma.scheduler.universityscheduler.entity.LectorEntity;
 import com.kma.scheduler.universityscheduler.entity.StudentEntity;
+import com.kma.scheduler.universityscheduler.exception.student.StudentNotFoundException;
 import com.kma.scheduler.universityscheduler.model.Admin;
 import com.kma.scheduler.universityscheduler.repository.LectorRepository;
 import com.kma.scheduler.universityscheduler.repository.StudentRepository;
@@ -10,6 +11,8 @@ import com.kma.scheduler.universityscheduler.service.manager.ManagerService;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
 import com.kma.scheduler.universityscheduler.service.student.StudentService;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AdminService {
@@ -40,8 +43,8 @@ public class AdminService {
         return studentRepository.save(studentEntity);
     }
 
-    public void deleteStudent(Long studentId) {
-        studentRepository.deleteById(studentId);
+    public Optional<StudentEntity> deleteStudent(Long studentId) {
+        return studentRepository.findById(studentId).map(s->{studentRepository.delete(s); return s;});
     }
 
     public void addLector(LectorEntity lectorEntity) {
