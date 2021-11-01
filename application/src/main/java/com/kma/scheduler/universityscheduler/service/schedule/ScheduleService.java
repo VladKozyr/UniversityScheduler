@@ -38,9 +38,6 @@ public class ScheduleService {
     }
 
     public void updateSlot(Long slotId, Long lectorId, Long courseId) {
-
-        if (slotId == null) return;
-
         Optional<SlotEntity> slotEntityOptional = slotRepository.findById(slotId);
 
         if (slotEntityOptional.isPresent()) {

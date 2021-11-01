@@ -5,6 +5,8 @@ import com.kma.scheduler.universityscheduler.service.admin.AdminService;
 import com.kma.scheduler.universityscheduler.service.lector.LectorService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -24,13 +26,13 @@ public class LectorController {
     }
 
     @PostMapping("/add")
-    public String deleteLector(@RequestBody LectorEntity lectorEntity) {
+    public String deleteLector(@Valid @RequestBody LectorEntity lectorEntity) {
         adminService.addLector(lectorEntity);
         return "Added";
     }
 
     @DeleteMapping("/delete")
-    public String deleteLector(@RequestParam Long lectorId) {
+    public String deleteLector(@NotNull @RequestParam Long lectorId) {
         adminService.deleteLector(lectorId);
         return "Deleted";
     }

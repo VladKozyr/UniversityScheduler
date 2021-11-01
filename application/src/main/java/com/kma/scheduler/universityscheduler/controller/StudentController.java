@@ -5,6 +5,8 @@ import com.kma.scheduler.universityscheduler.service.admin.AdminService;
 import com.kma.scheduler.universityscheduler.service.student.StudentService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -26,13 +28,13 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public StudentEntity addStudent(@RequestBody StudentEntity studentEntity) {
+    public StudentEntity addStudent(@Valid @RequestBody StudentEntity studentEntity) {
         System.out.println(studentEntity);
         return adminService.addStudent(studentEntity);
     }
 
     @DeleteMapping("/delete")
-    public String deleteStudent(@RequestParam Long studentId) {
+    public String deleteStudent(@NotNull @RequestParam Long studentId) {
         adminService.deleteStudent(studentId);
         return "Deleted";
     }
