@@ -63,9 +63,70 @@
 		{
 			"name": "delete_student",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/student/delete?studentId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "studentId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_slot",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/timeslot/update?slotId=2&courseId=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"timeslot",
+						"update"
+					],
+					"query": [
+						{
+							"key": "slotId",
+							"value": "2"
+						},
+						{
+							"key": "courseId",
+							"value": "3"
+						},
+						{
+							"key": "lectorId",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
 			},
 			"response": []
 		}
