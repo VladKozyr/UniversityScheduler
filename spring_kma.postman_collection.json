@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "0b566dd7-6b22-458f-bbcf-b03bfeb84ec9",
+		"name": "spring_kma",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/student/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"BOGDAN\",\n    \"surname\": \"VOILOV\",\n    \"course\": {\n        \"id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/student/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/student/all",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token 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",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/student/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_student",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
