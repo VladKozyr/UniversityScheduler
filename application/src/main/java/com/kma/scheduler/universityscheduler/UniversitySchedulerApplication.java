@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class UniversitySchedulerApplication {
     public static void main(String[] args) {
         SpringApplication.run(UniversitySchedulerApplication.class, args);
-        LogManager.getLogger(UniversitySchedulerApplication.class).info("Application started");
+//        LogManager.getLogger(UniversitySchedulerApplication.class).info("Application started");
     }
 
 }

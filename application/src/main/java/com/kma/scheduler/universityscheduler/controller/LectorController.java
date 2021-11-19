@@ -26,7 +26,7 @@ public class LectorController {
     }
 
     @PostMapping("/add")
-    public String deleteLector(@Valid @RequestBody LectorEntity lectorEntity) {
+    public String addLector(@Valid @RequestBody LectorEntity lectorEntity) {
         adminService.addLector(lectorEntity);
         return "Added";
     }
