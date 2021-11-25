@@ -17,11 +17,10 @@ public class MainController {
         System.out.println(adminList.getAdmin());
     }
 
-//    @ExceptionHandler({})
 
-    @GetMapping("/main")
-    public String main() {
-        return "Main controller";
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
     }
 
 }
