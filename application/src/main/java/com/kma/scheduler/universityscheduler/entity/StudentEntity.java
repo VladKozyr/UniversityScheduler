@@ -1,10 +1,7 @@
 package com.kma.scheduler.universityscheduler.entity;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
@@ -17,6 +14,7 @@ import javax.persistence.*;
 @ToString
 @Setter
 @Getter
+@Data
 public class StudentEntity extends UserEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "course_id")
@@ -24,6 +22,7 @@ public class StudentEntity extends UserEntity {
 
     private static final Logger logger = LogManager.getLogger(StudentEntity.class);
 
+    @Builder
     public StudentEntity(Long id, String name, String surname, Course course) {
         super(id, name, surname);
         this.course = course;
@@ -33,4 +32,5 @@ public class StudentEntity extends UserEntity {
         logger.info("Student created");
         ThreadContext.clearAll();
     }
+
 }

@@ -10,6 +10,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
+@Data
 @Table(name = "course", uniqueConstraints = {@UniqueConstraint(columnNames =
         {"year", "faculty"})})
 public class Course {
