@@ -7,6 +7,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "student")
@@ -16,15 +19,15 @@ import javax.persistence.*;
 @Getter
 @Data
 public class StudentEntity extends UserEntity {
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "course_id")
     private Course course;
 
     private static final Logger logger = LogManager.getLogger(StudentEntity.class);
 
     @Builder
-    public StudentEntity(Long id, String name, String surname, Course course) {
-        super(id, name, surname);
+    public StudentEntity(Long id, String name, String surname, String password, Course course) {
+        super(id, name, surname, password, Role.STUDENT);
         this.course = course;
 
         ThreadContext.put("name", name);

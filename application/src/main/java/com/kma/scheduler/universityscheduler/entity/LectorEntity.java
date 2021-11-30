@@ -15,20 +15,14 @@ import javax.persistence.*;
 @Getter
 @Data
 public class LectorEntity extends UserEntity {
-//    private String surname;
-//    private String name;
     private String cathedra;
     private static final Logger logger = LogManager.getLogger(LectorEntity.class);
 
-    @Builder
-    public LectorEntity(Long id, String name, String surname, String cathedra) {
-        super(id, name, surname);
-//        this.surname = surname1;
-//        this.name = name1;
+
+    public LectorEntity(Long id, String name, String surname, String password, String cathedra) {
+        super(id, name, surname,password,Role.LECTOR);
         this.cathedra = cathedra;
 
-//        ThreadContext.put("name", this.name);
-//        ThreadContext.put("surname", this.surname);
         logger.info("Lector created");
         ThreadContext.clearAll();
     }
