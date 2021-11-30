@@ -1,5 +1,6 @@
 package com.kma.scheduler.universityscheduler.controller;
 
+import com.kma.scheduler.universityscheduler.controller.requests.CreateLectorRequest;
 import com.kma.scheduler.universityscheduler.entity.LectorEntity;
 import com.kma.scheduler.universityscheduler.service.admin.AdminService;
 import com.kma.scheduler.universityscheduler.service.lector.LectorService;
@@ -26,8 +27,8 @@ public class LectorController {
     }
 
     @PostMapping("/add")
-    public String addLector(@Valid @RequestBody LectorEntity lectorEntity) {
-        adminService.addLector(lectorEntity);
+    public String addLector(@Valid @RequestBody CreateLectorRequest request) {
+        adminService.addLector(new LectorEntity(null,request.getName(),request.getLogin(),request.getPassword(),request.getCathedra()));
         return "Added";
     }
 

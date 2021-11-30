@@ -9,8 +9,8 @@ public class Student extends User {
 
     private final ScheduleService scheduleService;
 
-    public Student(Long id,ScheduleService scheduleService, String surname, String name, Course course){
-        super(id,name, surname);
+    public Student(Long id,ScheduleService scheduleService, String login, String name, Course course){
+        super(id,name, login);
         this.course = course;
         this.scheduleService = scheduleService;
     }

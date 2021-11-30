@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
         matchIfMissing = true)
 public class DefaultAdminList implements AdminList {
     public String adminName = "default_name";
-    public String adminSurname = "default_surname";
+    public String adminlogin = "default_login";
     private AdminService adminService;
 
     DefaultAdminList(AdminService adminService){
@@ -20,6 +20,6 @@ public class DefaultAdminList implements AdminList {
     }
     @Override
     public Admin getAdmin() {
-        return this.adminService.createAdmin(adminName,adminSurname);
+        return this.adminService.createAdmin(adminName,adminlogin);
     }
 }

@@ -21,8 +21,8 @@ public class LectorService {
         this.lectorRepository = repository;
     }
 
-    public Lector createLector(String name, String surname) {
-        return new Lector(null, scheduleService, name, surname);
+    public Lector createLector(String name, String login) {
+        return new Lector(null, scheduleService, name, login);
     }
 
     public List<LectorEntity> getAllLectors() {

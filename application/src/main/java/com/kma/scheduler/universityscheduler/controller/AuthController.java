@@ -23,7 +23,7 @@ import javax.validation.Valid;
 @Getter
 @ToString
 class AuthRequest {
-    String name;
+    String login;
     String password;
 }
 @RestController
@@ -48,7 +48,7 @@ public class AuthController {
             Authentication authenticate = authenticationManager
                     .authenticate(
                             new UsernamePasswordAuthenticationToken(
-                                    request.getName(), request.getPassword()
+                                    request.getLogin(), request.getPassword()
                             )
                     );
 

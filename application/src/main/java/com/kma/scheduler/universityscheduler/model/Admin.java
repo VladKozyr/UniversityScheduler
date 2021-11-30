@@ -12,23 +12,23 @@ public class Admin extends User{
     private final LectorService lectorService;
     private final ManagerService managerService;
 
-    public Admin(Long id, ScheduleService scheduleService, StudentService studentService, LectorService lectorService, ManagerService managerService, String name, String surname){
-        super(id, name, surname);
+    public Admin(Long id, ScheduleService scheduleService, StudentService studentService, LectorService lectorService, ManagerService managerService, String name, String login){
+        super(id, name, login);
         this.scheduleService = scheduleService;
         this.studentService = studentService;
         this.lectorService = lectorService;
         this.managerService = managerService;
     }
 
-    public Student createStudent(String name,String surname, Course course){
-        return this.studentService.createStudent(name,surname,course);
+    public Student createStudent(String name,String login, Course course){
+        return this.studentService.createStudent(name,login,course);
     }
 
-    public Lector createLector(String name,String surname){
-        return this.lectorService.createLector(name,surname);
+    public Lector createLector(String name,String login){
+        return this.lectorService.createLector(name,login);
     }
 
-    public Manager createManager(String name,String surname){
-        return this.managerService.createManager(name,surname);
+    public Manager createManager(String name,String login){
+        return this.managerService.createManager(name,login);
     }
 }

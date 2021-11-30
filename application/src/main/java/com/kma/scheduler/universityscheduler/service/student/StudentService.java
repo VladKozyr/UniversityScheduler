@@ -22,8 +22,8 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Student createStudent(String name, String surname, Course course) {
-        return new Student(null, this.scheduleService, name, surname, course);
+    public Student createStudent(String name, String login, Course course) {
+        return new Student(null, this.scheduleService, name, login, course);
     }
 
     public List<StudentEntity> getAllStudents() {
@@ -34,7 +34,7 @@ public class StudentService {
         return list;
     }
 
-    public Optional<StudentEntity> getStudent(String name) {
-        return studentRepository.findStudentByName(name);
+    public Optional<StudentEntity> getStudent(String login) {
+        return studentRepository.findStudentByLogin(login);
     }
 }

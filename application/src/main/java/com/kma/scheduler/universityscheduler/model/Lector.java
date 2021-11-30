@@ -6,8 +6,8 @@ public class Lector extends User {
 
     private final ScheduleService scheduleService;
 
-    public Lector(Long id, ScheduleService scheduleService, String name, String surname) {
-        super(id, name, surname);
+    public Lector(Long id, ScheduleService scheduleService, String name, String login) {
+        super(id, name, login);
         this.scheduleService = scheduleService;
     }
 

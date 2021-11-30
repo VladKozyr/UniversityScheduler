@@ -15,14 +15,14 @@ import static java.lang.String.format;
 @RequiredArgsConstructor
 public class JwtTokenUtil {
 
-    private final String jwtSecret = "zdtlD3JK56m6wTTgsNFhqzjqP";
-    private final String jwtIssuer = "example.io";
+    private final String jwtSecret = "jwtSecret";
+    private final String jwtIssuer = "university-scheduler";
 
     private final Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class);
 
     public String generateAccessToken(UserEntity user) {
         return Jwts.builder()
-                .setSubject(format("%s,%s", user.getId(), user.getName()))
+                .setSubject(format("%s,%s", user.getId(), user.getLogin()))
                 .setIssuer(jwtIssuer)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)) // 1 week

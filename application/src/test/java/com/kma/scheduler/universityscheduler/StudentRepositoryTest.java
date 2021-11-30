@@ -18,7 +18,7 @@ public class StudentRepositoryTest {
     public void saveStudent(){
         StudentEntity student = StudentEntity.builder()
                 .name("Test student")
-                .surname("Test surname")
+                .login("Test login")
                 .course(Course.builder().year(1).faculty("FI").build())
                 .build();
         studentRepository.save(student);
@@ -29,7 +29,7 @@ public class StudentRepositoryTest {
     public void updateStudent(){
         StudentEntity student = StudentEntity.builder()
                 .name("Test student")
-                .surname("Test surname")
+                .login("Test login")
                 .course(Course.builder().year(1).faculty("FI").build())
                 .build();
         studentRepository.save(student);

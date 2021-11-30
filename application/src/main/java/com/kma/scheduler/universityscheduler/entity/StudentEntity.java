@@ -26,12 +26,12 @@ public class StudentEntity extends UserEntity {
     private static final Logger logger = LogManager.getLogger(StudentEntity.class);
 
     @Builder
-    public StudentEntity(Long id, String name, String surname, String password, Course course) {
-        super(id, name, surname, password, Role.STUDENT);
+    public StudentEntity(Long id, String name, String login, String password, Course course) {
+        super(id, name, login, password, Role.STUDENT);
         this.course = course;
 
         ThreadContext.put("name", name);
-        ThreadContext.put("surname", surname);
+        ThreadContext.put("login", login);
         logger.info("Student created");
         ThreadContext.clearAll();
     }

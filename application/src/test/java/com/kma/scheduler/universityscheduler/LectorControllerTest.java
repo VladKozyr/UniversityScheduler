@@ -30,7 +30,7 @@ public class LectorControllerTest {
 
     @Test
     public void getLectorById() throws Exception{
-        LectorEntity lectorEntity = new LectorEntity(null,"Test name","Test surname",null,"Test cathedra");
+        LectorEntity lectorEntity = new LectorEntity(null,"Test name","Test login",null,"Test cathedra");
         ArrayList<LectorEntity> lectors = new ArrayList<>();
         lectors.add(lectorEntity);
         when(lectorController.getLectors()).thenReturn(lectors);

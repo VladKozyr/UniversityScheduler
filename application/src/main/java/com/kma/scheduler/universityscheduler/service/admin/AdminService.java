@@ -35,8 +35,8 @@ public class AdminService {
     }
 
 
-    public Admin createAdmin(String name, String surname) {
-        return new Admin(null, scheduleService, studentService, lectorService, managerService, name, surname);
+    public Admin createAdmin(String name, String login) {
+        return new Admin(null, scheduleService, studentService, lectorService, managerService, name, login);
     }
 
     public StudentEntity addStudent(StudentEntity studentEntity) {

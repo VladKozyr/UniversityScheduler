@@ -14,10 +14,10 @@ import java.util.stream.Stream;
 public class ManagerEntity extends UserEntity {
     private static final Logger logger = LogManager.getLogger(ManagerEntity.class);
 
-    public ManagerEntity(Long id, String name, String surname,String  password) {
-        super(id, name, surname,password,Role.MANAGER);
+    public ManagerEntity(Long id, String name, String login,String  password) {
+        super(id, name, login,password,Role.MANAGER);
         ThreadContext.put("name", name);
-        ThreadContext.put("surname", surname);
+        ThreadContext.put("login", login);
         logger.info("Manager created");
         ThreadContext.clearAll();
     }

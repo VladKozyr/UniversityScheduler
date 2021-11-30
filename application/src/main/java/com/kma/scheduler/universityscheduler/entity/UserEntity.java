@@ -24,8 +24,9 @@ public class UserEntity  implements UserDetails {
     private Long id;
     @NotBlank(message = "Blank name...")
     private String name;
-    @NotBlank(message = "Blank surname...")
-    private String surname;
+    @NotBlank(message = "Blank login...")
+    @Column(unique = true)
+    private String login;
     private String password;
 
     private String role;
@@ -37,7 +38,7 @@ public class UserEntity  implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.getName();
+        return this.getLogin();
     }
 
     @Override

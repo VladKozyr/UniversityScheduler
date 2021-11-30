@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 public class ConfiguredAdminList implements AdminList {
     @Value("${user.admin.name}")
     public String adminName;
-    @Value("${user.admin.surname}")
-    public String adminSurname;
+    @Value("${user.admin.login}")
+    public String adminlogin;
     private AdminService adminService;
 
     ConfiguredAdminList(AdminService adminService){
@@ -22,6 +22,6 @@ public class ConfiguredAdminList implements AdminList {
     }
     @Override
     public Admin getAdmin() {
-        return this.adminService.createAdmin(adminName,adminSurname);
+        return this.adminService.createAdmin(adminName,adminlogin);
     }
 }

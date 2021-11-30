@@ -15,7 +15,7 @@ public class ManagerService {
         this.repository = repository;
     }
 
-    public Manager createManager(String name, String surname){
-        return new Manager(null,scheduleService,name,surname);
+    public Manager createManager(String name, String login){
+        return new Manager(null,scheduleService,name,login);
     }
 }

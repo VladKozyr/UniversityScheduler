@@ -8,5 +8,5 @@ import lombok.ToString;
 public abstract class User{
     private final Long id;
     private final String name;
-    private final String surname;
+    private final String login;
 }
