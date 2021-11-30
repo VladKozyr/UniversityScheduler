@@ -42,23 +42,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(username -> {
-            logger.info("SEARCHING "+username);
-            try {
-                UserDetails details = userRepo.findUserEntityByLogin(username).orElseGet(()->null);
-                logger.info("FOUND "+details);
-            } catch (Error e){
-                logger.info("ERROR");
-            }
-            logger.info("FOUND SOME");
-            return userRepo
-                            .findUserEntityByLogin(username)
-                            .orElseThrow(
-                                    () -> new UsernameNotFoundException(
-                                            format("User: %s, not found", username)
-                                    )
-                            );
-                }
+        auth.userDetailsService(username ->
+                userRepo
+                        .findUserEntityByLogin(username)
+                        .orElseThrow(
+                                () -> new UsernameNotFoundException(
+                                        format("User: %s, not found", username)
+                                )
+                        )
+
         );
     }
 

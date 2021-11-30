@@ -1,4 +1,4 @@
-package com.kma.scheduler.universityscheduler.controller;
+package com.kma.scheduler.universityscheduler.controller.advice;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
