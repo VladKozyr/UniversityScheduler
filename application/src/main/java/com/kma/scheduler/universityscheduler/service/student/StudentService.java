@@ -28,9 +28,7 @@ public class StudentService {
 
     public List<StudentEntity> getAllStudents() {
         List<StudentEntity> list = new ArrayList<>();
-        studentRepository.findAll().iterator().forEachRemaining(s -> {
-            list.add(s);
-        });
+        studentRepository.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
 

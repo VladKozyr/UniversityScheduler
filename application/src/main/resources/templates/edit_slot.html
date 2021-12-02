@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>University scheduler</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <h1>Edit slot:</h1>
+            <form th:action="@{/editSlot/{id}(id=${slot.id})}" method="post" th:object="${slot_res}"
+                  style="max-width: 300px;">
+                <p>
+                    Lector_id
+                    <input name="lectorId" class="form-control" th:field="*{lectorId}"
+                           placeholder="lector_id" th:value="${slot.lector.id}"
+                           required
+                           autofocus/>
+                </p>
+                <p>
+                    Course_id
+                    <input name="courseId" class="form-control" th:field="*{courseId}"
+                           placeholder="course_id" th:value="${slot.course.id}"
+                           required/>
+                </p>
+                <p>
+                    <input type="submit" value="Submit" class="btn btn-primary"/>
+                </p>
+            </form>
+            <h2>Lectors</h2>
+            <table id="example" class="table table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Cathedra</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="lector : ${lectors}">
+                    <td th:text="${lector.id}">ID</td>
+                    <td th:text="${lector.name}">Name</td>
+                    <td th:text="${lector.cathedra}">Cathedra</td>
+                </tr>
+                </tbody>
+            </table>
+            <h2>Courses</h2>
+            <table class="table table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Year</th>
+                    <th>Faculty</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="course : ${courses}">
+                    <td th:text="${course.id}">ID</td>
+                    <td th:text="${course.year}">Year</td>
+                    <td th:text="${course.faculty}">Faculty</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

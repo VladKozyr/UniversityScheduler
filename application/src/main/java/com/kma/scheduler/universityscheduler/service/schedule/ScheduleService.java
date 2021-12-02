@@ -10,6 +10,8 @@ import com.kma.scheduler.universityscheduler.repository.LectorRepository;
 import com.kma.scheduler.universityscheduler.repository.SlotRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +25,16 @@ public class ScheduleService {
         this.slotRepository = slotRepository;
         this.lectorRepository = lectorRepository;
         this.courseRepository = courseRepository;
+    }
+
+    public List<SlotEntity> getAllSlots() {
+        List<SlotEntity> slots = new ArrayList<>();
+        slotRepository.findAll().iterator().forEachRemaining(slots::add);
+        return slots;
+    }
+
+    public SlotEntity getById(Long id) {
+        return slotRepository.findById(id).get();
     }
 
     public Slot[] getCourseSchedule(Course course) {
@@ -44,12 +56,12 @@ public class ScheduleService {
             SlotEntity slot = slotEntityOptional.get();
 
 
-                Optional<LectorEntity> lectorEntityOptional = lectorRepository.findById(lectorId);
-                lectorEntityOptional.ifPresent(slot::setLector);
+            Optional<LectorEntity> lectorEntityOptional = lectorRepository.findById(lectorId);
+            lectorEntityOptional.ifPresent(slot::setLector);
 
 
-                Optional<Course> courseOptional = courseRepository.findById(courseId);
-                courseOptional.ifPresent(slot::setCourse);
+            Optional<Course> courseOptional = courseRepository.findById(courseId);
+            courseOptional.ifPresent(slot::setCourse);
 
             slotRepository.save(slot);
         }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>University scheduler</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <h1>Slots</h1>
+            <table id="example" class="table table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Room</th>
+                    <th>Time</th>
+                    <th>Course</th>
+                    <th>Lector</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="slot : ${slots}">
+                    <td th:text="${slot.getDay()}">Day</td>
+                    <td th:text="${slot.getRoom()}">Room</td>
+                    <td th:text="${slot.getTime()}">Time</td>
+                    <td th:text="${slot.getCourse()?.year}">Course</td>
+                    <td th:text="${slot.getLector()?.name}">Lector</td>
+
+                    <td sec:authorize="hasRole('ROLE_MANAGER')">
+                        <a th:href="@{/slot/edit/{id}(id=${slot.id})}">Edit</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
