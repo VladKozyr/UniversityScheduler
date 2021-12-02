@@ -1,5 +1,7 @@
 package com.kma.scheduler.universityscheduler.controller;
 
+import com.kma.scheduler.universityscheduler.aspect.executiontime.TrackExecutionTime;
+import com.kma.scheduler.universityscheduler.aspect.params.MethodParams;
 import com.kma.scheduler.universityscheduler.controller.mapping.SlotEditMapping;
 import com.kma.scheduler.universityscheduler.entity.Course;
 import com.kma.scheduler.universityscheduler.entity.Role;
@@ -44,11 +46,13 @@ public class MainController {
     }
 
     @GetMapping("/login")
+    @TrackExecutionTime
     public String login() {
         return "login";
     }
 
     @RequestMapping("/main")
+    @MethodParams
     public String main(HttpServletRequest request, Model model) {
 
         if (request.isUserInRole(Role.MANAGER) || request.isUserInRole(Role.LECTOR)) {
