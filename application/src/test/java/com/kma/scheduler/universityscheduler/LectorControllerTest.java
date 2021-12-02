@@ -5,10 +5,14 @@ import com.kma.scheduler.universityscheduler.entity.LectorEntity;
 import com.kma.scheduler.universityscheduler.service.admin.AdminService;
 import com.kma.scheduler.universityscheduler.service.lector.LectorService;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -19,7 +23,9 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(LectorController.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class LectorControllerTest {
 
     @Autowired
@@ -29,7 +35,7 @@ public class LectorControllerTest {
     private LectorController lectorController;
 
     @Test
-    public void getLectorById() throws Exception{
+    public void getLectors() throws Exception{
         LectorEntity lectorEntity = new LectorEntity(null,"Test name","Test login",null,"Test cathedra");
         ArrayList<LectorEntity> lectors = new ArrayList<>();
         lectors.add(lectorEntity);
