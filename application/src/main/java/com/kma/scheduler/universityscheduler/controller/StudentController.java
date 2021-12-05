@@ -14,6 +14,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +29,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("student")
+@EnableScheduling
 public class StudentController {
     private final PasswordEncoder passwordEncoder;
     private final AdminService adminService;
@@ -40,6 +43,15 @@ public class StudentController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Scheduled(fixedDelay = 1800000)
+    public void scheduleStudentsCount(){
+        logger.info("We have " + studentService.getAllStudents().size() + " students in database");
+    }
+
+    @Scheduled(cron = "0 * * * *")
+    public void scheduleServiceWorks(){
+        logger.info("Student service works");
+    }
     @GetMapping("/all")
     @Secured({Role.MANAGER, Role.LECTOR})
     @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
