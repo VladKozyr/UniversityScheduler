@@ -12,8 +12,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -26,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.PersistenceException;
+import java.util.concurrent.TimeUnit;
 import javax.validation.Valid;
 
 @RestController
@@ -89,8 +87,7 @@ public class StudentController {
     @Secured(Role.STUDENT)
     @GetMapping("/me")
     @Operation(summary = "Get self endpoint", security = @SecurityRequirement(name = "bearerAuth"))
-    @Cacheable(value = "student-cache")
-    public ResponseEntity<StudentEntity> getSelf(){
+    public ResponseEntity<StudentEntity> getSelf() throws InterruptedException {
         UserDetails principle = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return studentService.getStudent(principle.getUsername()).map(s->ResponseEntity.status(200).body(s)).orElseGet(()->ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
     }

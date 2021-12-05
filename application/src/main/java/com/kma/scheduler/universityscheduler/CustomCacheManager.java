@@ -2,29 +2,24 @@ package com.kma.scheduler.universityscheduler;
 
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
 
-import java.util.AbstractMap;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CustomCacheManager implements CacheManager {
-    HashMap<String, Cache> cacheHashMap = Stream.of(
-            new AbstractMap.SimpleEntry<>("student-cache", null))
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    ConcurrentMapCache cacheHashMap = new ConcurrentMapCache("student-cache");
 
     @Override
     public Cache getCache(String name) {
         System.out.println("Get cache");
-        if (cacheHashMap.containsKey(name))
-            return cacheHashMap.get(name);
-        return null;
+
+        return (Cache) cacheHashMap.get(name);
     }
 
     @Override
     public Collection<String> getCacheNames() {
-        return cacheHashMap.keySet();
+        return Set.of("student-cache");
     }
 }

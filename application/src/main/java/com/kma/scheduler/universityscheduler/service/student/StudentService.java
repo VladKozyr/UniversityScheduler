@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class StudentService {
@@ -35,7 +36,9 @@ public class StudentService {
     }
 
 
-    public Optional<StudentEntity> getStudent(String login) {
+    @Cacheable(value = "student-cache", key = "#login")
+    public Optional<StudentEntity> getStudent(String login) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(5);
         return studentRepository.findStudentByLogin(login);
     }
 
