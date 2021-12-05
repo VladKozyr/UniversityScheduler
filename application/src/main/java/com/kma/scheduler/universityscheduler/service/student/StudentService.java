@@ -5,6 +5,8 @@ import com.kma.scheduler.universityscheduler.entity.StudentEntity;
 import com.kma.scheduler.universityscheduler.model.Student;
 import com.kma.scheduler.universityscheduler.repository.StudentRepository;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,7 +34,12 @@ public class StudentService {
         return list;
     }
 
+
     public Optional<StudentEntity> getStudent(String login) {
         return studentRepository.findStudentByLogin(login);
     }
+
+    @CacheEvict(value = "student-cache", allEntries = true)
+    public void evictAllCacheValues() {}
+
 }

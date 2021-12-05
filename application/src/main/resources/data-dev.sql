@@ -1,7 +1,7 @@
 SELECT 'test';
 
 INSERT INTO USER(ID, NAME, PASSWORD, LOGIN, ROLE)
-VALUES (0, 'string', '$2a$04$eax4hv/iPeNneBtky.G8reAWCI2r6r07z6yEn6BTV2r.9OufLrxRS', 'string', 'ROLE_MANAGER');
+VALUES (0, 'string', '$2a$04$eax4hv/iPeNneBtky.G8reAWCI2r6r07z6yEn6BTV2r.9OufLrxRS', 'string', 'ROLE_STUDENT');
 INSERT INTO USER(ID, NAME, PASSWORD, LOGIN, ROLE)
 VALUES (1, 'lector', '$2a$04$eax4hv/iPeNneBtky.G8reAWCI2r6r07z6yEn6BTV2r.9OufLrxRS', 'lector', 'ROLE_LECTOR');
 
