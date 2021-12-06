@@ -14,7 +14,8 @@ public class CacheConfig {
     @Bean
     public CacheManager cacheManager() {
         System.out.println("Cache enabled");
-        return new ConcurrentMapCacheManager("student-cache");
+        String cacheKey = "student-cache";
+        return new CustomCacheManager(cacheKey);
     }
 
 
