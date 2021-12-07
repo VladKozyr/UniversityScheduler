@@ -1,0 +1,330 @@
+openapi: 3.0.1
+info:
+  title: My API
+  version: v1
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /student/all:
+    get:
+      tags:
+      - student-controller
+      summary: My endpoint
+      operationId: getAllStudents
+      responses:
+        "400":
+          description: Bad Request
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentEntity'
+      security:
+      - bearerAuth: []
+  /lector/add:
+    post:
+      tags:
+      - lector-controller
+      operationId: addLector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLectorRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /lector/all:
+    get:
+      tags:
+      - lector-controller
+      operationId: getLectors
+      responses:
+        "400":
+          description: Bad Request
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LectorEntity'
+  /student/me:
+    get:
+      tags:
+      - student-controller
+      summary: Get self endpoint
+      operationId: getSelf
+      responses:
+        "400":
+          description: Bad Request
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StudentEntity'
+      security:
+      - bearerAuth: []
+  /student/add:
+    post:
+      tags:
+      - student-controller
+      summary: Create student endpoint
+      operationId: addStudent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStudentRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int64
+      security:
+      - bearerAuth: []
+  /student/delete:
+    delete:
+      tags:
+      - student-controller
+      summary: Delete student endpoint
+      operationId: deleteStudent
+      parameters:
+      - name: studentId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Bad Request
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StudentEntity'
+      security:
+      - bearerAuth: []
+  /timeslot/update:
+    put:
+      tags:
+      - slot-controller
+      operationId: updateTimeslot
+      parameters:
+      - name: slotId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lectorId:
+                  type: integer
+                  format: int64
+                courseId:
+                  type: integer
+                  format: int64
+      responses:
+        "400":
+          description: Bad Request
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /lector/delete:
+    delete:
+      tags:
+      - lector-controller
+      operationId: deleteLector
+      parameters:
+      - name: lectorId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Bad Request
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    Course:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        year:
+          type: integer
+          format: int32
+        faculty:
+          type: string
+    GrantedAuthority:
+      type: object
+      properties:
+        authority:
+          type: string
+    StudentEntity:
+      required:
+      - login
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+        course:
+          $ref: '#/components/schemas/Course'
+        enabled:
+          type: boolean
+        accountNonLocked:
+          type: boolean
+        username:
+          type: string
+        credentialsNonExpired:
+          type: boolean
+        accountNonExpired:
+          type: boolean
+        authorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrantedAuthority'
+    CreateLectorRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+        cathedra:
+          type: string
+    LectorEntity:
+      required:
+      - login
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+        cathedra:
+          type: string
+        enabled:
+          type: boolean
+        accountNonLocked:
+          type: boolean
+        username:
+          type: string
+        credentialsNonExpired:
+          type: boolean
+        accountNonExpired:
+          type: boolean
+        authorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrantedAuthority'
+    CreateStudentRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+        courseId:
+          type: integer
+          format: int64
+  securitySchemes:
+    javainuseapi:
+      type: http
+      in: header
+      scheme: bearerAuth
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
