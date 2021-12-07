@@ -45,4 +45,9 @@ public class LectorControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void checkAuthForStudent() throws Exception{
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/student/me")).andExpect(MockMvcResultMatchers.status().isOk());
+    }
 }
