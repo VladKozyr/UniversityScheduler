@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "b5d2a79c-e680-42dd-8035-6caff0e68e3c",
+		"_postman_id": "0b566dd7-6b22-458f-bbcf-b03bfeb84ec9",
 		"name": "spring_kma",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Add student",
+			"name": "http://localhost:8080/student/add",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -35,7 +35,7 @@
 			"response": []
 		},
 		{
-			"name": "Get all students",
+			"name": "http://localhost:8080/student/all",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -124,81 +124,6 @@
 							"key": "lectorId",
 							"value": null,
 							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add Lector",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"A\",\r\n  \"surname\": \"B\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/lector/add",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"lector",
-						"add"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get lectors",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/lector/all",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"lector",
-						"all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/lector/delete?lectorId=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"lector",
-						"delete"
-					],
-					"query": [
-						{
-							"key": "lectorId",
-							"value": "1"
 						}
 					]
 				}

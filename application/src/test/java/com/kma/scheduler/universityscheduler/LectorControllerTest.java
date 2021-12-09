@@ -48,6 +48,6 @@ public class LectorControllerTest {
 
     @Test
     public void checkAuthForStudent() throws Exception{
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/student/me")).andExpect(MockMvcResultMatchers.status().isOk());
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/student/me")).andExpect(MockMvcResultMatchers.status().is(401));
     }
 }
