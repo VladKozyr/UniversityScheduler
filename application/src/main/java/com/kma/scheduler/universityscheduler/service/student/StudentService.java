@@ -2,6 +2,7 @@ package com.kma.scheduler.universityscheduler.service.student;
 
 import com.kma.scheduler.universityscheduler.entity.Course;
 import com.kma.scheduler.universityscheduler.entity.StudentEntity;
+import com.kma.scheduler.universityscheduler.entity.slot.SlotEntity;
 import com.kma.scheduler.universityscheduler.model.Student;
 import com.kma.scheduler.universityscheduler.repository.StudentRepository;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
@@ -33,6 +34,10 @@ public class StudentService {
         List<StudentEntity> list = new ArrayList<>();
         studentRepository.findAll().iterator().forEachRemaining(list::add);
         return list;
+    }
+
+    public List<SlotEntity> getSlotsByFaculty(StudentEntity student){
+        return scheduleService.getSlotByFaculty(student.getCourse().getFaculty());
     }
 
 

@@ -1,6 +1,7 @@
 package com.kma.scheduler.universityscheduler.service.lector;
 
 import com.kma.scheduler.universityscheduler.entity.LectorEntity;
+import com.kma.scheduler.universityscheduler.entity.slot.SlotEntity;
 import com.kma.scheduler.universityscheduler.model.Lector;
 import com.kma.scheduler.universityscheduler.repository.LectorRepository;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
@@ -29,5 +30,9 @@ public class LectorService {
         List<LectorEntity> list = new ArrayList<>();
         lectorRepository.findAll().iterator().forEachRemaining(list::add);
         return list;
+    }
+
+    public List<SlotEntity> getLectorSchedule(LectorEntity lector){
+        return scheduleService.getSlotByLectorId(lector.getId());
     }
 }
