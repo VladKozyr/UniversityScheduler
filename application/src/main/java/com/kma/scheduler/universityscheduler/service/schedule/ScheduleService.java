@@ -49,6 +49,18 @@ public class ScheduleService {
         return slot;
     }
 
+    public List<SlotEntity> getSlotByFaculty(String faculty){
+        List<SlotEntity> slots = new ArrayList<SlotEntity>();
+        slotRepository.getSlotByFaculty(faculty).iterator().forEachRemaining(slots::add);
+        return slots;
+    }
+
+    public List<SlotEntity> getSlotByLectorId(Long id){
+        List<SlotEntity> slots = new ArrayList<SlotEntity>();
+        slotRepository.getSlotByLectorId(id).iterator().forEachRemaining(slots::add);
+        return slots;
+    }
+
     public void updateSlot(Long slotId, Long lectorId, Long courseId) {
         Optional<SlotEntity> slotEntityOptional = slotRepository.findById(slotId);
 
