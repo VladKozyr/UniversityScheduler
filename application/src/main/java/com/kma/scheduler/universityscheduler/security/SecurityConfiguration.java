@@ -80,7 +80,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/lector/all", "/h2-console/**", "/auth/**").permitAll()
-                .antMatchers("/lector/**", "/student/**", "/timeslot/**", "/main/**").authenticated();
+                .antMatchers("/lector/**", "/student/**", "/timeslot/**", "/main/**").permitAll();
 
         http.formLogin()
                 .loginPage("/login")
