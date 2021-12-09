@@ -18,9 +18,9 @@ import javax.persistence.*;
 @Setter
 public class SlotEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private Course course;
 
@@ -32,7 +32,7 @@ public class SlotEntity {
     @Column(name = "day")
     private SlotDay day;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private LectorEntity lector;
     private String room;
 }

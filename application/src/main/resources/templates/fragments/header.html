@@ -12,6 +12,10 @@
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">University scheduler</a>
 
+        <a sec:authorize="hasRole('ROLE_MANAGER')" type="button" class="btn btn-primary" href="/mvc/lector/add">Add lector</a>
+
+        <a sec:authorize="hasRole('ROLE_MANAGER')" type="button" class="btn btn-primary" href="/mvc/student/add">Add student</a>
+
         <div class="justify-content-end">
             <a sec:authorize="isAnonymous()" type="button" class="btn btn-primary" href="/login">Login</a>
             <form sec:authorize="isAuthenticated()" name="logoutForm" th:action="@{/logout}" method="post">

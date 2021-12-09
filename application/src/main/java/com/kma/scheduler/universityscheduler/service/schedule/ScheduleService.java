@@ -61,6 +61,12 @@ public class ScheduleService {
         return slots;
     }
 
+    public List<SlotEntity> getSlotByCourseId(Long id){
+        List<SlotEntity> slots = new ArrayList<SlotEntity>();
+        slotRepository.getSlotByCourseId(id).iterator().forEachRemaining(slots::add);
+        return slots;
+    }
+
     public void updateSlot(Long slotId, Long lectorId, Long courseId) {
         Optional<SlotEntity> slotEntityOptional = slotRepository.findById(slotId);
 

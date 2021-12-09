@@ -5,6 +5,8 @@ import com.kma.scheduler.universityscheduler.aspect.params.MethodParams;
 import com.kma.scheduler.universityscheduler.controller.mapping.SlotEditMapping;
 import com.kma.scheduler.universityscheduler.entity.Course;
 import com.kma.scheduler.universityscheduler.entity.Role;
+import com.kma.scheduler.universityscheduler.entity.StudentEntity;
+import com.kma.scheduler.universityscheduler.entity.UserEntity;
 import com.kma.scheduler.universityscheduler.entity.slot.SlotEntity;
 import com.kma.scheduler.universityscheduler.repository.CourseRepository;
 import com.kma.scheduler.universityscheduler.security.SecurityConfiguration;
@@ -14,6 +16,8 @@ import com.kma.scheduler.universityscheduler.service.lector.LectorService;
 import com.kma.scheduler.universityscheduler.service.schedule.ScheduleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -55,8 +59,17 @@ public class MainController {
     @MethodParams
     public String main(HttpServletRequest request, Model model) {
 
-        if (request.isUserInRole(Role.MANAGER) || request.isUserInRole(Role.LECTOR)) {
-            model.addAttribute("slots", scheduleService.getAllSlots());
+        Object principals = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principals instanceof UserEntity) {
+            if (request.isUserInRole(Role.LECTOR)) {
+                model.addAttribute("slots", scheduleService.getSlotByLectorId(((UserEntity) principals).getId()));
+            } else if (request.isUserInRole(Role.MANAGER)) {
+                model.addAttribute("slots", scheduleService.getAllSlots());
+            } else if (request.isUserInRole(Role.STUDENT)) {
+                model.addAttribute("slots", scheduleService.getSlotByCourseId(((StudentEntity) principals).getCourse().getId()));
+            }
+
             return "main";
         }
 

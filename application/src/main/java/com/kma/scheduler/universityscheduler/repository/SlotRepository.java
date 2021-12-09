@@ -12,4 +12,7 @@ public interface SlotRepository extends CrudRepository<SlotEntity, Long> {
 
     @Query(value = "SELECT * FROM slot where lector_id = ?1", nativeQuery = true)
     Iterable<SlotEntity> getSlotByLectorId(Long id);
+
+    @Query(value = "SELECT * FROM slot where course_id = ?1", nativeQuery = true)
+    Iterable<SlotEntity> getSlotByCourseId(Long id);
 }

@@ -8,6 +8,7 @@ import com.kma.scheduler.universityscheduler.service.lector.LectorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,10 +20,14 @@ import java.util.List;
 public class LectorController {
     private final AdminService adminService;
     private final LectorService lectorService;
+    private final PasswordEncoder passwordEncoder;
 
-    public LectorController(AdminService adminService, LectorService lectorService) {
+
+
+    public LectorController(AdminService adminService, LectorService lectorService, PasswordEncoder passwordEncoder) {
         this.adminService = adminService;
         this.lectorService = lectorService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/all")
@@ -34,7 +39,7 @@ public class LectorController {
     @Secured({Role.MANAGER})
     @Operation(summary = "Create lector", security = @SecurityRequirement(name = "bearerAuth"))
     public String addLector(@Valid @RequestBody CreateLectorRequest request) {
-        adminService.addLector(new LectorEntity(null,request.getName(),request.getLogin(),request.getPassword(),request.getCathedra()));
+        adminService.addLector(new LectorEntity(null, request.getName(), request.getLogin(), passwordEncoder.encode(request.getPassword()), request.getCathedra()));
         return "Added";
     }
 

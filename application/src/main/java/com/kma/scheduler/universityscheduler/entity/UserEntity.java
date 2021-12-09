@@ -20,10 +20,12 @@ import java.util.stream.Stream;
 @Getter
 public class UserEntity  implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "Blank name...")
     private String name;
+
     @NotBlank(message = "Blank login...")
     @Column(unique = true)
     private String login;
