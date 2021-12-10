@@ -18,7 +18,7 @@ public class LectorEntity extends UserEntity {
     private String cathedra;
     private static final Logger logger = LogManager.getLogger(LectorEntity.class);
 
-
+    @Builder
     public LectorEntity(Long id, String name, String login, String password, String cathedra) {
         super(id, name, login,password,Role.LECTOR);
         this.cathedra = cathedra;
